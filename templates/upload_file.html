@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h4 class="fw-bold mb-4">📂 上传作品材料</h4>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">文件类型</label>
+            <select name="file_type" class="form-select rounded-3">
+                <option>申报书</option>
+                <option>作品正文</option>
+                <option>附件材料</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <input type="file" name="file" class="form-control rounded-3" accept=".pdf,.docx,.zip" required>
+        </div>
+        <button class="btn btn-primary">上传文件</button>
+    </form>
+    <hr class="my-4">
+    <h5 class="fw-bold">已上传文件</h5>
+    {% for f in files %}
+    <div class="border rounded-3 p-3 mb-2 d-flex justify-content-between align-items-center bg-light">
+        <span>{{ f[3] }}</span>
+        <a href="/preview/{{ f[3] }}" class="btn btn-sm btn-info">预览</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

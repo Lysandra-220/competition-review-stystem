@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h4 class="fw-bold mb-4">📢 发布系统公告</h4>
+    <form method="post">
+        <textarea name="content" class="form-control rounded-3 mb-4" rows="4" required placeholder="输入公告内容"></textarea>
+        <button class="btn btn-primary">发布公告</button>
+    </form>
+    <hr class="my-4">
+    <h5 class="fw-bold">历史公告</h5>
+    {% for n in notices %}
+    <div class="border rounded-3 p-3 mb-2 bg-light">
+        {{ n[1] }} <span class="text-muted small">{{ n[2] }}</span>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

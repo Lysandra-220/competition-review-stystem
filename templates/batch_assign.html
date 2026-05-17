@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h4 class="fw-bold mb-4">👨‍⚖️ 批量分配评委</h4>
+    <form method="post">
+        <div class="mb-4">
+            <h5 class="fw-bold">选择评委</h5>
+            <div class="d-flex flex-wrap gap-3">
+                {% for j in judges %}
+                <label class="form-check-label">
+                    <input type="checkbox" name="judges" value="{{ j }}" class="form-check-input"> {{ j }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mb-4">
+            <h5 class="fw-bold">选择队伍</h5>
+            <div class="d-flex flex-column gap-2">
+                {% for t in teams %}
+                <label class="form-check-label">
+                    <input type="checkbox" name="teams" value="{{ t[0] }}" class="form-check-input"> {{ t[1] }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <button class="btn btn-primary">确认分配</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h3 class="text-center text-primary fw-bold mb-5">📊 竞赛赛事数据总览看板</h3>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white p-4 text-center">
+                <h5>总参赛队伍</h5>
+                <h1 class="display-5 fw-bold">{{ total }}</h1>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-secondary text-white p-4 text-center">
+                <h5>待审核队伍</h5>
+                <h1 class="display-5 fw-bold">{{ pending_cnt }}</h1>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white p-4 text-center">
+                <h5>已通过队伍</h5>
+                <h1 class="display-5 fw-bold">{{ pass_cnt }}</h1>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white p-4 text-center">
+                <h5>已驳回队伍</h5>
+                <h1 class="display-5 fw-bold">{{ reject_cnt }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5 class="text-center mb-3">队伍状态分布柱状图</h5>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5 class="text-center mb-3">参赛组别占比饼图</h5>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6">
+            <div class="card bg-warning text-dark p-4 text-center">
+                <h5>已打分队伍</h5>
+                <h1 class="display-5 fw-bold">{{ score_cnt }}</h1>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-info text-white p-4 text-center">
+                <h5>本科生 / 研究生组</h5>
+                <h3 class="fw-bold">{{ ug }} 支 / {{ pg }} 支</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+        labels: ['待审核','已通过','已驳回'],
+        datasets: [{
+            data: [{{pending_cnt}}, {{pass_cnt}}, {{reject_cnt}}],
+            backgroundColor: ['#6c757d','#198754','#dc3545']
+        }]
+    },
+    options: { responsive:true, plugins:{legend:{display:false}} }
+});
+
+new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+        labels: ['本科生组','研究生组'],
+        datasets: [{
+            data: [{{ug}}, {{pg}}],
+            backgroundColor: ['#4099ff','#ffb142']
+        }]
+    },
+    options: { responsive:true }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5 w-50 mx-auto">
+    <h4 class="fw-bold text-center mb-4">📝 队伍打分</h4>
+    <form method="post">
+        <div class="mb-4">
+            <label class="form-label">分数（0‑100）</label>
+            <input name="score" type="number" min="0" max="100" step="0.1" class="form-control rounded-3" required>
+        </div>
+        <button class="btn btn-warning w-100">提交打分</button>
+    </form>
+</div>
+{% endblock %}

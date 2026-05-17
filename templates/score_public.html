@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h4 class="fw-bold mb-4">🏆 竞赛成绩公示</h4>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr><th>队伍名称</th><th>组别</th><th>最终平均分</th></tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item['队伍名称'] }}</td>
+                <td>{{ item['组别'] }}</td>
+                <td>{{ item['最终平均分'] if item['最终平均分'] else '未打分' }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

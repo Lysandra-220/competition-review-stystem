@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-5">
+    <h4 class="fw-bold mb-4">✅ 队伍报名审核</h4>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover rounded-3 overflow-hidden">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>队伍名</th>
+                    <th>组长</th>
+                    <th>组别</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for t in teams %}
+            <tr>
+                <td>{{ t[0] }}</td>
+                <td>{{ t[1] }}</td>
+                <td>{{ t[2] }}</td>
+                <td>{{ t[5] }}</td>
+                <td>{{ t[6] }}</td>
+                <td>
+                    <form method="post" class="d-inline">
+                        <input type="hidden" name="team_id" value="{{ t[0] }}">
+                        <button name="status" value="approve" class="btn btn-sm btn-success">通过</button>
+                        <button name="status" value="reject" class="btn btn-sm btn-danger">驳回</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
